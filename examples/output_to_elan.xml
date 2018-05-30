@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+     <D-Spin xmlns="http://www.dspin.de/data" version="0.4">
+        <MetaData xmlns="http://www.dspin.de/data/metadata">
+            <source></source>
+            <Services>
+                <CMD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.clarin.eu/cmd/" CMDVersion="1.1" 
+                    xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1320657629623/xsd">
+                    <Components>
+                        <WebServiceToolChain>
+                            <Toolchain>
+                                <ToolInChain>
+                                    <PID>11858/00-1778-0000-0004-BA56-7</PID>
+                                    <Parameter name="version" value="0.4"></Parameter>
+                                </ToolInChain>
+                                </Toolchain>
+                        </WebServiceToolChain>
+                    </Components>
+                </CMD>
+            </Services>
+        </MetaData>
+        <TextCorpus xmlns="http://www.dspin.de/data/textcorpus" lang="de">
+            <text>Karin fliegt nach New York. Sie will dort Urlaub machen.</text>
+            <tokens>
+                <token ID="t_0">Karin</token>
+                <token ID="t_1">fliegt</token>
+                <token ID="t_2"></token>
+                <token ID="t_3">New</token>
+                <token ID="t_4"></token>
+                <token ID="t_5">.</token>
+                <token ID="t_6">Sie</token>
+                <token ID="t_7">will</token>
+                <token ID="t_8">dort</token>
+                <token ID="t_9">Urlaub</token>
+                <token ID="t_10">machen</token>
+                <token ID="t_11">.</token>
+            </tokens>
+            <sentences>
+                <sentence ID="s_0" tokenIDs="t_0 t_1 t_2 t_3 t_4 t_5"></sentence>
+                <sentence ID="s_1" tokenIDs="t_6 t_7 t_8 t_9 t_10 t_11"></sentence>
+            </sentences>
+            <POStags tagset="stts">
+                <tag ID="pt_0" tokenIDs="t_0">NE</tag>
+                <tag ID="pt_1" tokenIDs="t_1">VVFIN</tag>
+                <tag ID="pt_2" tokenIDs="t_2">APPR</tag>
+                <tag ID="pt_3" tokenIDs="t_3">NE</tag>
+                <tag ID="pt_4" tokenIDs="t_4">NE</tag>
+                <tag ID="pt_5" tokenIDs="t_5">$.</tag>
+                <tag ID="pt_6" tokenIDs="t_6">PPER</tag>
+                <tag ID="pt_7" tokenIDs="t_7">VMFIN</tag>
+                <tag ID="pt_8" tokenIDs="t_8">ADV</tag>
+                <tag ID="pt_9" tokenIDs="t_9">NN</tag>
+                <tag ID="pt_10" tokenIDs="t_10">VVINF</tag>
+                <tag ID="pt_11" tokenIDs="t_11">$.</tag>
+            </POStags>
+        </TextCorpus>
+     </D-Spin>
