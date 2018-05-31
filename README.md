@@ -6,6 +6,8 @@ There have been very succesful attempts to use Finite-State-Transducers in Giell
 
 However, there are many situations where using locally installed software is problematic. The tools demand some technical knowledge to be installed and maintained, and some information should regularly move between users and developers. Ideally the software would be updated and critical information about analysers performance would move automatically without involvement of the users themselves, which would also make the use analysers so effortless that the user base could grow.
 
+This project uses Mika Hämäläinen's (@mikahama) [uralicNLP](https://github.com/mikahama/uralicNLP) Python package to access [Giellatekno's analysers](http://giellatekno.uit.no/).
+
 ## Web applications and ELAN
 
 In ELAN it is nowadays possible to call web applications, principally those within [WebLicht infrastructure](https://weblicht.sfs.uni-tuebingen.de/weblichtwiki/index.php/Main_Page). However, on the background ELAN sends some data as TCF XML file to the web application as a POST request, which returns to ELAN another similarly structured XML file.
@@ -44,6 +46,10 @@ After this you can point in ELAN's Options > Web Services > WebLicht menu the we
 - It can be that this TCF XML is not the best format for our purposes? WebLicht uses it, so it's worth considering anyway.
 - I'm not sure what is happening with tokenization in file that ELAN sends?
 - Application could detect whether it is receiving already tokenized content or utterances
+
+## Authors
+
+- Niko Partanen
 
 ## Images
 
