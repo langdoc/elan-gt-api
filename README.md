@@ -6,7 +6,7 @@ There have been very succesful attempts to use Finite-State-Transducers in Giell
 
 However, there are many situations where using locally installed software is problematic. The tools demand some technical knowledge to be installed and maintained, and some information should regularly move between users and developers. Ideally the software would be updated and critical information about analysers performance would move automatically without involvement of the users themselves, which would also make the use analysers so effortless that the user base could grow.
 
-This project uses Mika Hämäläinen's (@mikahama) [uralicNLP](https://github.com/mikahama/uralicNLP) Python package to access [Giellatekno's analysers](http://giellatekno.uit.no/).
+This project uses Mika Hämäläinen's [uralicNLP](https://github.com/mikahama/uralicNLP) Python package to access [Giellatekno's analysers](http://giellatekno.uit.no/).
 
 ## Web applications and ELAN
 
