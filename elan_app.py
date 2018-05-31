@@ -11,18 +11,23 @@ app = Flask(__name__)
 @app.route("/", methods=['POST'])
 def elan():
     
-    with open("input.txt","wb") as fo:
+    # This saves the input so it is easier to examine what is going on
+     with open("input.txt","wb") as fo:
         fo.write(request.data)
     
+    # The language attribute apparently comes from ELAN too somehow
     cg = Cg3("kpv")
     
     tree = ET.fromstring(request.data)
-    #tree = ET.parse('elan-fst-app/flask_test.txt')
+
     xmlns = {'corpus': '{http://www.dspin.de/data/textcorpus}'}
     
     tokens = []
     for token in tree.findall('.//{corpus}token'.format(**xmlns)):
         tokens.append(token.text)
+    
+    # This is kind of a fake-approach to just pick one of the readings,
+    # since I don't know if it is possible to have that through the pipeline now
     
     disambiguations = cg.disambiguate(tokens)
     
@@ -52,6 +57,10 @@ def elan():
     for token_id in token_ids:
         re.sub('t', 'pt', token_id)
     
+    # This constructs the XML, I'm not sure if this works at all
+    # I think I wanted to have there just some random content
+    # to get something through 
+    
     pos_tag = ET.Element("POStags", tagset="stts")
     
     textcorpus = tree.find('{corpus}TextCorpus'.format(**xmlns))
@@ -69,6 +78,8 @@ def elan():
     tag = ET.Element("tag", tokenIDs="t_0", ID="pt_0")
     tag.text = "ok"
     postags.append(tag)
+   
+   # This writes the output into file for examination
    
     with open("output.txt","wb") as fo:
         fo.write(ET.tostring(tree))
