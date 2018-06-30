@@ -12,7 +12,7 @@ app = Flask(__name__)
 def elan():
     
     # This saves the input so it is easier to examine what is going on
-     with open("input.txt","wb") as fo:
+    with open("examples/input_from_elan.xml","wb") as fo:
         fo.write(request.data)
     
     # The language attribute apparently comes from ELAN too somehow
