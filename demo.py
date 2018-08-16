@@ -39,7 +39,7 @@ def demo():
                 <token ID="t_3">тайӧ</token>
                 <token ID="t_4">мӧд</token>
                 <token ID="t_5">тайӧ</token>
-                <token ID="t_6">куймӧд</token>
+                <token ID="t_6">куимӧд</token>
             </tokens>
             <POStags tagset="stts">
                 <tag ID="pt_0" tokenIDs="t_0">sometag1</tag>
