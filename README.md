@@ -25,9 +25,7 @@ It could also be possible to set up in ELAN Java code a new Giellatekno selectio
 
 ## Example files
 
-The file `examples/input_from_elan.xml` is formatted as what ELAN sends to the application as a POST request. `examples/output_to_elan.xml` illustrates how the file (apparently) should be formatted in order to be put back into ELAN.
-
-The file `demo.py` contains a test application which actually works, although it doesn't really do anything, it just sends back to ELAN the kind of file it assumes. So as the example file looks like this:
+The file `examples/input_from_elan.xml` is formatted as what ELAN sends to the application as a POST request. `examples/output_to_elan.xml` illustrates how the file (apparently) should be formatted in order to be put back into ELAN. The example ELAN file looks like this:
 
 ![](images/elan_tier_structure.png)
 
@@ -86,12 +84,13 @@ The web application takes the annotations through uralicNLP, and restructures th
 
 ![](images/elan_tier_structure_ready.png)
 
+The content itself could of course be anything, so there are many possibilities to integrate this into different tools.
+
 ## Use
 
 Just run in the project folder:
 
     FLASK_APP=elan_app.py flask run
-    FLASK_APP=demo.py flask run
 
 If everything is ok, you should see:
 
