@@ -16,11 +16,17 @@ def elan():
         fo.write(request.data)
     
     # The language attribute apparently comes from ELAN too somehow
+    # This should be picked automatically, and the analyser should
+    # be selected based on that. This works very well when each
+    # speaker speaks different language (one Komi, another Russian etc.)
+    # Q: what should be done if the analyser for one language is not found?
     cg = Cg3("kpv")
     
     tree = ET.fromstring(request.data)
 
     xmlns = {'corpus': '{http://www.dspin.de/data/textcorpus}'}
+    
+    # The sentences are somehow tokenized, but this should be done better…
     
     tokens = []
     for token in tree.findall('.//{corpus}token'.format(**xmlns)):
@@ -31,14 +37,12 @@ def elan():
     
     disambiguations = cg.disambiguate(tokens)
     
-    #print(disambiguations)
-    
     forms = []
     lemmas = []
     tags_all = []
     
     for disambiguation in disambiguations:
-        #print(disambiguation)
+        
         forms.append(disambiguation[0])
         
         possible_words = disambiguation[1]
@@ -52,6 +56,10 @@ def elan():
     uniq_tags = [list(OrderedDict.fromkeys(tag_list)) for tag_list in clean_tags]
     tags = [' | '.join(tag_list) for tag_list in uniq_tags]
     
+    # I collect here everything into distinct lists so that I can later
+    # loop over them. There is probably some better data structure in
+    # Python -- maybe what comes out from uralicNLP is already something better?
+    
     token_ids = []
     for token in tree.findall('.//{corpus}token'.format(**xmlns)):
         token_ids.append(token.attrib['ID'])
@@ -60,31 +68,29 @@ def elan():
     for token_id in token_ids:
         tag_ids.append(re.sub('t', 'pt', token_id))
     
-    # This constructs the XML, I'm not sure if this works at all
-    # I think I wanted to have there just some random content
-    # to get something through 
+    # This constructs the XML, the namespaces were bit tricky, but everything
+    # seems to work now. First we create POStags node and then put it to the
+    # right place.
     
     pos_tag = ET.Element("ns2:POStags", tagset="stts")
     
     textcorpus = tree.find('.//{corpus}TextCorpus'.format(**xmlns))
     textcorpus.append(pos_tag)
     
-    for id in token_ids:
-        print('token ids:' + id)
-    for id in tag_ids:
-        print('tag ids:' + id)
-    for id in tags:
-        print('tag:' + id)
+    # Printing here was useful to examine what is going on
     
-    print(pos_tag)
+    # for id in token_ids:
+    #     print('token ids:' + id)
+    # for id in tag_ids:
+    #     print('tag ids:' + id)
+    # for id in tags:
+    #     print('tag:' + id)
+    
+    # This adds POS tags and morphology into tags under POStags node
     
     for token_id, tag_id, tag in zip(token_ids, tag_ids, tags):
-        print("token id: " + token_id)
         current_tag = ET.Element("tag", tokenIDs=token_id, ID=tag_id)
         current_tag.text = tag
-        print(tag)
-        whatever = tree.find('.//{corpus}ns2:POStags'.format(**xmlns))
-        print(whatever)
         textcorpus.append(current_tag)
    
    # This writes the output into file for examination
