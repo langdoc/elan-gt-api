@@ -3,7 +3,7 @@
 <MetaData xmlns="http://www.dspin.de/data/metadata"><source/></MetaData>
 <TextCorpus xmlns="http://www.dspin.de/data/textcorpus" lang="en">
 <text>
-Тайӧ ӧтик сёрникузя. тайӧ мӧд. тайӧ куймӧд. 
+Тайӧ ӧтик сёрникузя. тайӧ мӧд. тайӧ куимӧд. 
 </text>
 <tokens>
 <token ID="t1">Тайӧ</token>
@@ -12,7 +12,7 @@
 <token ID="t4">тайӧ</token>
 <token ID="t5">мӧд</token>
 <token ID="t6">тайӧ</token>
-<token ID="t7">куймӧд</token>
+<token ID="t7">куимӧд</token>
 </tokens>
 <sentences>
 <sentence ID="s1" tokenIDs="t1 t2 t3"/>
