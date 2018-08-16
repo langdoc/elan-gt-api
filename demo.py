@@ -27,7 +27,11 @@ def demo():
             </Services>
         </MetaData>
         <TextCorpus xmlns="http://www.dspin.de/data/textcorpus" lang="de">
-            <text>This text doesn't seem to matter?.</text>
+            <sentences>
+                <sentence ID="s_0" tokenIDs="t_0 t_1 t_2"></sentence>
+                <sentence ID="s_1" tokenIDs="t_3 t_4"></sentence>
+                <sentence ID="s_3" tokenIDs="t_5 t_6"></sentence>
+            </sentences>
             <tokens>
                 <token ID="t_0">Тайӧ</token>
                 <token ID="t_1">ӧтик</token>
@@ -37,11 +41,6 @@ def demo():
                 <token ID="t_5">тайӧ</token>
                 <token ID="t_6">куймӧд</token>
             </tokens>
-            <sentences>
-                <sentence ID="s_0" tokenIDs="t_0 t_1 t_2"></sentence>
-                <sentence ID="s_1" tokenIDs="t_3 t_4"></sentence>
-                <sentence ID="s_3" tokenIDs="t_5 t_6"></sentence>
-            </sentences>
             <POStags tagset="stts">
                 <tag ID="pt_0" tokenIDs="t_0">sometag1</tag>
                 <tag ID="pt_1" tokenIDs="t_1">sometag2</tag>
