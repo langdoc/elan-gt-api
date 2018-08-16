@@ -28,7 +28,7 @@ The file `examples/input_from_elan.xml` is formatted as what ELAN sends to the a
 
 File `demo.py` contains a test application which actually works, although it doesn't really anything, it just sends back to ELAN the kind of file it assumes. So as the example file looks like this:
 
-![](examples/elan_tier_structure.png)
+![](images/elan_tier_structure.png)
 
 Then the content that ELAN knows how to work with looks like this:
 
@@ -83,7 +83,7 @@ Then the content that ELAN knows how to work with looks like this:
 
 This brings into ELAN following annotations:
 
-![](examples/elan_tier_structure_ready.png)
+![](images/elan_tier_structure_ready.png)
 
 ## Use
 
