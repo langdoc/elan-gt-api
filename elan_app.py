@@ -31,11 +31,14 @@ def elan():
     
     disambiguations = cg.disambiguate(tokens)
     
+    #print(disambiguations)
+    
     forms = []
     lemmas = []
     tags_all = []
     
     for disambiguation in disambiguations:
+        #print(disambiguation)
         forms.append(disambiguation[0])
         
         possible_words = disambiguation[1]
@@ -55,29 +58,34 @@ def elan():
     
     tag_ids = []
     for token_id in token_ids:
-        re.sub('t', 'pt', token_id)
+        tag_ids.append(re.sub('t', 'pt', token_id))
     
     # This constructs the XML, I'm not sure if this works at all
     # I think I wanted to have there just some random content
     # to get something through 
     
-    pos_tag = ET.Element("POStags", tagset="stts")
+    pos_tag = ET.Element("ns2:POStags", tagset="stts")
     
-    textcorpus = tree.find('{corpus}TextCorpus'.format(**xmlns))
+    textcorpus = tree.find('.//{corpus}TextCorpus'.format(**xmlns))
     textcorpus.append(pos_tag)
     
-    print(tags)
+    for id in token_ids:
+        print('token ids:' + id)
+    for id in tag_ids:
+        print('tag ids:' + id)
+    for id in tags:
+        print('tag:' + id)
+    
+    print(pos_tag)
+    
     for token_id, tag_id, tag in zip(token_ids, tag_ids, tags):
+        print("token id: " + token_id)
         current_tag = ET.Element("tag", tokenIDs=token_id, ID=tag_id)
         current_tag.text = tag
         print(tag)
-        textcorpus = tree.find('POStags')
+        whatever = tree.find('.//{corpus}ns2:POStags'.format(**xmlns))
+        print(whatever)
         textcorpus.append(current_tag)
-
-    postags = tree.find('POStags')
-    tag = ET.Element("tag", tokenIDs="t_0", ID="pt_0")
-    tag.text = "ok"
-    postags.append(tag)
    
    # This writes the output into file for examination
    
