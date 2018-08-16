@@ -101,11 +101,10 @@ After this you can point in ELAN's Options > Web Services > WebLicht menu the we
 
 ## Tasks
 
-- **At the moment ELAN doesn't write the output of the application correctly, i.e. lower level annotations don't go to the right place.**
 - It's worth inspecting what happens in ELAN's own code when the input and output are processed
-- It can be that this TCF XML is not the best format for our purposes? WebLicht uses it, so it's worth considering anyway.
+    - A lot is happening i.e. in `src/main/java/mpi/eudico/webserviceclient/weblicht/TCFtoTranscription.java`
 - I'm not sure what is happening with tokenization in file that ELAN sends?
-- Application could detect whether it is receiving already tokenized content or utterances
+- Language tag is apparently somehow transferred to the web service -- how can we access this?
 
 ## Authors
 
