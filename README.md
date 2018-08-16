@@ -82,7 +82,7 @@ Then the content that ELAN knows how to work with looks like this:
 </D-Spin>
 ```
 
-This brings into ELAN following annotations:
+The web application takes the annotations through uralicNLP, and restructures the result into XML that looks like one above. This brings into ELAN following annotations:
 
 ![](images/elan_tier_structure_ready.png)
 
@@ -106,10 +106,13 @@ After this you can point in ELAN's Options > Web Services > WebLicht menu the we
     - A lot is happening i.e. in `src/main/java/mpi/eudico/webserviceclient/weblicht/TCFtoTranscription.java`
 - I'm not sure what is happening with tokenization in the file that ELAN sends.
 - The language tag in ELAN's tier configuration is apparently somehow transferred to the web service -- but how can we access and utilize this metadata for automatic pointing to the respective analyzer in Giellatekno?
+- Application could be running somewhere on an actual server
+- How can this be registrated in WebLicht so that it appears in menu automatically? 
 
 ## Authors
 
 - Niko Partanen
+- Michael Rießler
 
 ## Images
 
