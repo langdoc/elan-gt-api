@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ANNOTATION_DOCUMENT AUTHOR="NP" DATE="2018-05-18T18:08:20+02:00" FORMAT="3.0" VERSION="3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+<ANNOTATION_DOCUMENT AUTHOR="NP" DATE="2018-08-16T05:52:52+02:00" FORMAT="3.0" VERSION="3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
     <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
         <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:2f24f408-e5cc-445a-a91b-a3ff177621d1</PROPERTY>
-        <PROPERTY NAME="lastUsedAnnotationId">91</PROPERTY>
+        <PROPERTY NAME="lastUsedAnnotationId">93</PROPERTY>
     </HEADER>
     <TIME_ORDER>
         <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="600"/>
         <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="4840"/>
         <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="5570"/>
         <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="8720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="9150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="11200"/>
     </TIME_ORDER>
     <TIER LINGUISTIC_TYPE_REF="partT" TIER_ID="part"/>
     <TIER LINGUISTIC_TYPE_REF="refT" PARTICIPANT="S1" TIER_ID="ref@S1">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1" TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">
-                <ANNOTATION_VALUE></ANNOTATION_VALUE>
+                <ANNOTATION_VALUE>example.001</ANNOTATION_VALUE>
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a3" TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts4">
-                <ANNOTATION_VALUE></ANNOTATION_VALUE>
+                <ANNOTATION_VALUE>example.002</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a92" TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts6">
+                <ANNOTATION_VALUE>example.003</ANNOTATION_VALUE>
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
@@ -33,6 +40,11 @@
         <ANNOTATION>
             <REF_ANNOTATION ANNOTATION_ID="a4" ANNOTATION_REF="a3">
                 <ANNOTATION_VALUE>тайӧ мӧд</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a93" ANNOTATION_REF="a92">
+                <ANNOTATION_VALUE>тайӧ куймӧд</ANNOTATION_VALUE>
             </REF_ANNOTATION>
         </ANNOTATION>
     </TIER>
