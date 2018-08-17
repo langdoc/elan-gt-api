@@ -115,8 +115,8 @@ After this you can point in ELAN's Options > Web Services > WebLicht menu the we
 
 ## Acknowledgements
 
-Ciprian Gerstenberger et.al. (2018) ELAN-FST script. https://github.com/langdoc/elan-fst 
-Mika Hämäläinen. (2018, January 9). UralicNLP (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.1143638
+- Ciprian Gerstenberger et.al. (2018) ELAN-FST script. https://github.com/langdoc/elan-fst 
+- Mika Hämäläinen. (2018, January 9). UralicNLP (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.1143638
 
 ## Images
 
