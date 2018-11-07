@@ -2,7 +2,7 @@
 
 ## Introduction
 
-There have been very succesful attempts to use Finite-State-Transducers inside the [Giellatekno language technology infrastructure](http://giellatekno.uit.no/) with transcribed data stored in [ELAN](https://tla.mpi.nl/tools/tla-tools/elan/). The [Python scripts developed by Ciprian Gerstenberger et al.](https://github.com/langdoc/elan-fst) (originally used while working on Komi and Saami languages) call the locally installed tools and enhance ELAN files with the output of the analyser.
+There have been very succesful attempts to use morphosyntactic analysers under creation inside the [Giellatekno language technology infrastructure](http://giellatekno.uit.no/) for parsing and tagging transcribed data stored in [ELAN](https://tla.mpi.nl/tools/tla-tools/elan/). For instance, the [Python scripts developed by Ciprian Gerstenberger et al.](https://github.com/langdoc/elan-fst) (originally used while working on Komi and Saami languages) call the locally installed tools and enhance ELAN files with the output of the analyser.
 
 However, there are many situations where using locally installed software is problematic. Installing and maintaining the tools demand considerable technical knowledge, and some information should regularly move between users and developers. Ideally the software would be updated and critical information about the analysers' performance would move automatically without involvement of the users themselves. This would likele make the use of the Giellatekno analysers so effortless that the user base could grow.
 
@@ -15,7 +15,7 @@ In ELAN it is nowadays possible to call web applications, principally those with
 
 Since it is possible to specify in ELAN an arbitrary URL for the service, it is easy to run other code and process the data as if it would had been sent to WebLicht.
 
-The goal of this application is to demonstrate how this could be set up, although the current version doesn't work as intended yet. However, the **idea seems** to work and will be followed up in the near future. At the moment the script tries to insert for each word token only one lemma and one morphosyntactic analysis, as it is a bit unclear if the way TCF carries the information allows repeating everything, like our current [elan-fst script](https://github.com/langdoc/elan-fst) does. There are some things that also probably are governed by how ELAN processes the information when it comes from the web application. Some of the open questions are:
+The goal of this application is to demonstrate how this could be set up, although the current version doesn't completely work as intended yet. However, the **idea seems** to work and will be followed up in the near future. At the moment the script tries to insert for each word token only one lemma and one morphosyntactic analysis, as it is a bit unclear if the way TCF carries the information allows repeating everything, like our current [elan-fst script](https://github.com/langdoc/elan-fst) does. There are some things that also probably are governed by how ELAN processes the information when it comes from the web application. Some of the open questions are:
 
 - Can we receive tiers being defined as the type "symbolic subdivision" from the web application?
     - This is needed when one form has several possible analysis
@@ -112,6 +112,13 @@ After this you can point in ELAN's Options > Web Services > WebLicht menu the we
 
 - Niko Partanen
 - Michael Rießler
+
+## Acknowledgements
+
+The code builds considerably on earlier work by:
+
+- Ciprian Gerstenberger et al. (2018) ELAN-FST script. https://github.com/langdoc/elan-fst 
+- Mika Hämäläinen (2018, January 9) UralicNLP (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.1143638
 
 ## Images
 
