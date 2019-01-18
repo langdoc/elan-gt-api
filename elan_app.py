@@ -42,14 +42,22 @@ def elan():
     tags_all = []
     
     for disambiguation in disambiguations:
-        
-        forms.append(disambiguation[0])
+        analysis = ''.join(str(disambiguation[1]))
+        analysis = re.sub('<[^-]+- ', '', analysis)
+        analysis = re.sub(', <[^>]+>>', '', analysis)
+        analysis = re.sub('(\[|\]| )', '', analysis)
+        analysis_split = analysis.split(",")
+        #print(analysis_split)
+        analysis_unique = sorted(list(set(analysis_split)))
+        analysis_complete = '|'.join(analysis_unique)
+        forms.append(analysis_complete)
         
         possible_words = disambiguation[1]
-        
+
         one_analysis = possible_words[0]
         lemmas.append(one_analysis.lemma)
         tags_all.append(one_analysis.morphology)
+
     
     clean_tags = [[re.sub('(@.+@|(?<=<W).+>)', '', tag) for tag in m] for m in tags_all]
     [tag_list.remove('<W') for tag_list in clean_tags]
