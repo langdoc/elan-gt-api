@@ -30,40 +30,39 @@ def elan():
     
     tokens = []
     for token in tree.findall('.//{corpus}token'.format(**xmlns)):
-        tokens.append(token.text)
+        text = re.sub("(,|\.|\?|!)", '', token.text)
+        tokens.append(text)
     
     # This is kind of a fake-approach to just pick one of the readings,
     # since I don't know if it is possible to have that through the pipeline now
     
     disambiguations = cg.disambiguate(tokens)
     
-    forms = []
     lemmas = []
-    tags_all = []
+    tags = []
     
     for disambiguation in disambiguations:
-        analysis = ''.join(str(disambiguation[1]))
-        analysis = re.sub('<[^-]+- ', '', analysis)
-        analysis = re.sub(', <[^>]+>>', '', analysis)
-        analysis = re.sub('(\[|\]| )', '', analysis)
-        analysis_split = analysis.split(",")
+        analysis_all = ''.join(str(disambiguation[1]))
+        analysis_morph = re.sub('<[^-]+- ', '', analysis_all)
+        analysis_morph = re.sub(', <[^>]+>>', '', analysis_morph)
+        analysis_morph = re.sub('(\[|\]| )', '', analysis_morph)
+        morph_split = analysis_morph.split(",")
         #print(analysis_split)
-        analysis_unique = sorted(list(set(analysis_split)))
-        analysis_complete = '|'.join(analysis_unique)
-        forms.append(analysis_complete)
+        morph_unique = sorted(list(set(morph_split)))
+        morph_complete = '|'.join(morph_unique)
+        tags.append(morph_complete)
         
-        possible_words = disambiguation[1]
+        # print('\nall: ' + analysis_all)
+        analysis_lemma = re.sub(', <W:0.000000>>', '', analysis_all)
+        analysis_lemma = re.sub('-[^<]+(<|$)', '', analysis_lemma)
+        analysis_lemma = re.sub('\[<', '', analysis_lemma)
+        lemma_split = analysis_lemma.split(" ")
+        lemma_unique = sorted(list(set(lemma_split)))
+        lemma_complete = '|'.join(lemma_unique)
+        lemma_complete = re.sub('^\|', '', lemma_complete)
+        lemmas.append(lemma_complete)
+        # print('lemma: ' + lemma_complete)
 
-        one_analysis = possible_words[0]
-        lemmas.append(one_analysis.lemma)
-        tags_all.append(one_analysis.morphology)
-
-    
-    clean_tags = [[re.sub('(@.+@|(?<=<W).+>)', '', tag) for tag in m] for m in tags_all]
-    [tag_list.remove('<W') for tag_list in clean_tags]
-    uniq_tags = [list(OrderedDict.fromkeys(tag_list)) for tag_list in clean_tags]
-    tags = [' | '.join(tag_list) for tag_list in uniq_tags]
-    
     # I collect here everything into distinct lists so that I can later
     # loop over them. There is probably some better data structure in
     # Python -- maybe what comes out from uralicNLP is already something better?
@@ -103,8 +102,8 @@ def elan():
    
    # This writes the output into file for examination
    
-    with open("output.txt","wb") as fo:
-        fo.write(ET.tostring(tree))
+#    with open("output.txt","wb") as fo:
+#        fo.write(ET.tostring(tree))
     
     return(ET.tostring(tree))
 
