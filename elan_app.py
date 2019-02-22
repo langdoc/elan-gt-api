@@ -74,6 +74,10 @@ def elan():
     for token_id in token_ids:
         tag_ids.append(re.sub('t', 'pt', token_id))
     
+    lemma_ids = []
+    for token_id in token_ids:
+        lemma_ids.append(re.sub('t', 'le', token_id))
+    
     # This constructs the XML, the namespaces were bit tricky, but everything
     # seems to work now. First we create POStags node and then put it to the
     # right place.
@@ -83,26 +87,26 @@ def elan():
     textcorpus = tree.find('.//{corpus}TextCorpus'.format(**xmlns))
     textcorpus.append(pos_tag)
     
-    # Printing here was useful to examine what is going on
-    
-    # for id in token_ids:
-    #     print('token ids:' + id)
-    # for id in tag_ids:
-    #     print('tag ids:' + id)
-    # for id in tags:
-    #     print('tag:' + id)
-    
-    # This adds POS tags and morphology into tags under POStags node
-    
     for token_id, tag_id, tag in zip(token_ids, tag_ids, tags):
         current_tag = ET.Element("tag", tokenIDs=token_id, ID=tag_id)
         current_tag.text = tag
         textcorpus.append(current_tag)
+        
+    lemma_tag = ET.Element("ns2:lemmas", tagset="stts")
+    
+    textcorpus = tree.find('.//{corpus}TextCorpus'.format(**xmlns))
+    textcorpus.append(lemma_tag)
+    
+    for token_id, lemma_id, lemma in zip(token_ids, lemma_ids, lemmas):
+        current_lemma = ET.Element("lemma", tokenIDs=token_id, ID=lemma_id)
+        current_lemma.text = lemma
+        textcorpus.append(current_lemma)
+        print(lemma)
    
    # This writes the output into file for examination
    
-#    with open("output.txt","wb") as fo:
-#        fo.write(ET.tostring(tree))
+    with open("output.txt","wb") as fo:
+        fo.write(ET.tostring(tree))
     
     return(ET.tostring(tree))
 
