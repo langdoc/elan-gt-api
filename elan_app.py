@@ -5,6 +5,7 @@ from collections import OrderedDict
 import xml.etree.ElementTree as ET
 from uralicNLP import uralicApi
 from uralicNLP.cg3 import Cg3
+import itertools
 
 app = Flask(__name__)
 
@@ -38,30 +39,28 @@ def elan():
     
     disambiguations = cg.disambiguate(tokens)
     
-    lemmas = []
+    print(disambiguations)
+    
     tags = []
+    lemmas = []
     
     for disambiguation in disambiguations:
-        analysis_all = ''.join(str(disambiguation[1]))
-        analysis_morph = re.sub('<[^-]+- ', '', analysis_all)
-        analysis_morph = re.sub(', <[^>]+>>', '', analysis_morph)
-        analysis_morph = re.sub('(\[|\]| )', '', analysis_morph)
-        morph_split = analysis_morph.split(",")
-        #print(analysis_split)
-        morph_unique = sorted(list(set(morph_split)))
-        morph_complete = '|'.join(morph_unique)
-        tags.append(morph_complete)
+        possible_words = disambiguation[1]
+        temp_list = []
+        for possible_word in possible_words:
+            possible_word.morphology.pop()
+            temp_list.append(possible_word.morphology)
+        flat_list = list(itertools.chain(*temp_list))
+        unique_list = list(set(flat_list))
+        tags.append('|'.join(unique_list))
         
-        # print('\nall: ' + analysis_all)
-        analysis_lemma = re.sub(', <W:0.000000>>', '', analysis_all)
-        analysis_lemma = re.sub('-[^<]+(<|$)', '', analysis_lemma)
-        analysis_lemma = re.sub('\[<', '', analysis_lemma)
-        lemma_split = analysis_lemma.split(" ")
-        lemma_unique = sorted(list(set(lemma_split)))
-        lemma_complete = '|'.join(lemma_unique)
-        lemma_complete = re.sub('^\|', '', lemma_complete)
-        lemmas.append(lemma_complete)
-        # print('lemma: ' + lemma_complete)
+    for disambiguation in disambiguations:
+        possible_words = disambiguation[1]
+        temp_list = []
+        for possible_word in possible_words:
+            temp_list.append(possible_word.lemma)
+        unique_list = list(set(temp_list))
+        lemmas.append('|'.join(unique_list))
 
     # I collect here everything into distinct lists so that I can later
     # loop over them. There is probably some better data structure in
